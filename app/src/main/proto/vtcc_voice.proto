@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "service";
+option java_outer_classname = "StreamingVoice";
+
+package streaming_voice;
+service StreamVoice {
+    rpc SendVoice (stream VoiceRequest) returns (stream TextReply) {
+    }
+}
+message VoiceRequest {
+    bytes byte_buff = 1;
+    bool is_start = 2;
+    bool is_end = 3;
+}
+
+message TextReply {
+    string text = 1;
+    string offline_text =2;
+    bool is_EOS =3;
+    bool is_final_text = 4;
+}

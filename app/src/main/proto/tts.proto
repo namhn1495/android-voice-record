@@ -1,0 +1,31 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "chat";
+option java_outer_classname = "Mess_Protoc";
+
+service SendTextMessage {
+    // Sends a text message
+    rpc send_text_message (stream TextMessage)
+        returns (stream TextReturnMessage) {
+    }
+}
+message TextMessage {
+    string dialog_id = 1;
+    string mess_id = 2;
+    int64 time = 3;
+    string payload = 4;
+    string account = 5;
+    bool require_tts = 6;
+    string text = 7;
+    bool is_waiting_message = 8;
+    bool is_terminate_message = 9;
+}
+message TextReturnMessage {
+    bool is_tts_return = 1;
+    bytes byte_buff = 2;
+    bool is_start = 3;
+    bool is_end = 4;
+    string text = 5;
+    bool is_bot_return = 6;
+    bool  is_terminate_message=7;
+}
